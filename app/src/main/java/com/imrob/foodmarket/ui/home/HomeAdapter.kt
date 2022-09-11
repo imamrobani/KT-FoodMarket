@@ -41,6 +41,8 @@ class HomeAdapter(
 //                Glide.with(context)
 //                    .load(data.src)
 //                    .into(ivPoster)
+
+                itemView.setOnClickListener { itemAdapterCallback.onClick(it, data) }
             }
         }
 
