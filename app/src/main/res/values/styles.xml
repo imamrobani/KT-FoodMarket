@@ -18,16 +18,22 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="TextView.PoppinsNormal22Ssp020202">
+    <style name="TextView.PoppinsNormal18Ssp020202">
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/black_primary</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="TextView.PoppinsNormal20Ssp020202">
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/black_primary</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextView.PoppinsNormal22Ssp020202">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/black_primary</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="TextView.PoppinsNormal14Ssp8D92A3">
