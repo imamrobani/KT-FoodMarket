@@ -6,10 +6,10 @@
     
     <style name="TextView"/>
 
-    <style name="TextView.PoppinsNormal32Ssp020202">
+    <style name="TextView.PoppinsNormal14Ssp020202">
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/black_primary</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="TextView.PoppinsNormal16Ssp020202">
@@ -34,6 +34,12 @@
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/black_primary</item>
         <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="TextView.PoppinsNormal32Ssp020202">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/black_primary</item>
+        <item name="android:textSize">32sp</item>
     </style>
 
     <style name="TextView.PoppinsNormal14Ssp8D92A3">
