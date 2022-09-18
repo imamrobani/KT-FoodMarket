@@ -1,5 +1,6 @@
 package com.imrob.foodmarket.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.imrob.foodmarket.databinding.FragmentHomeBinding
 import com.imrob.foodmarket.model.dummy.HomeModel
+import com.imrob.foodmarket.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), HomeAdapter.ItemAdapterCallback {
@@ -59,6 +61,7 @@ class HomeFragment : Fragment(), HomeAdapter.ItemAdapterCallback {
     }
 
     override fun onClick(v: View, data: HomeModel) {
-        Toast.makeText(context, "Hello Bro", Toast.LENGTH_SHORT).show()
+        val detail = Intent(activity, DetailActivity::class.java)
+        startActivity(detail)
     }
 }

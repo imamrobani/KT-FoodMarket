@@ -1,5 +1,6 @@
 package com.imrob.foodmarket.ui.home.popular
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.imrob.foodmarket.R
 import com.imrob.foodmarket.model.dummy.HomeVerticalModel
+import com.imrob.foodmarket.ui.detail.DetailActivity
 import com.imrob.foodmarket.ui.home.newtaste.HomeNewTasteAdapter
 import kotlinx.android.synthetic.main.fragment_home_new_taste.*
 
@@ -48,6 +50,7 @@ class HomePopularFragment : Fragment(), HomeNewTasteAdapter.ItemAdapterCallback 
     }
 
     override fun onClick(v: View, data: HomeVerticalModel) {
-         Toast.makeText(context, "OnClik item ${data.title}", Toast.LENGTH_SHORT).show()
+        val detail = Intent(activity, DetailActivity::class.java)
+        startActivity(detail)
     }
 }
