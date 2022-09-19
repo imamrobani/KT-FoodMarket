@@ -15,4 +15,10 @@ class PaymentSuccessFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_payment_success, container, false)
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        (activity as DetailActivity).toolbarDetail()
+    }
 }
