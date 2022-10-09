@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.gson.Gson
+import com.imrob.foodmarket.FoodMarket
 import com.imrob.foodmarket.R
 import com.imrob.foodmarket.model.response.login.LoginResponse
 import com.imrob.foodmarket.ui.MainActivity
@@ -31,6 +33,13 @@ class SigninFragment : Fragment(), SigninContract.View {
         super.onActivityCreated(savedInstanceState)
         presenter = SigninPresenter(this)
 
+        if (!FoodMarket.getApp().getToken().isNullOrEmpty()) {
+            val home = Intent(activity, MainActivity::class.java)
+            startActivity(home)
+            activity?.finish()
+        }
+
+        initDummy()
         initView()
 
         btnSignup.setOnClickListener {
@@ -40,11 +49,29 @@ class SigninFragment : Fragment(), SigninContract.View {
         }
 
         btnSignin.setOnClickListener {
-            presenter.submitLogin("imamrob@gmail.com", "12345678")
+            var email = etEmail.text.toString()
+            var password = etPassword.text.toString()
+
+            if (email.isNullOrEmpty()) {
+                etEmail.error = "Silahkan masukkan email Anda"
+                etEmail.requestFocus()
+            } else if (password.isNullOrEmpty()) {
+                etPassword.error = "Silahkan masukkan password Anda"
+                etPassword.requestFocus()
+            } else {
+                presenter.submitLogin(email, password)
+            }
         }
     }
 
     override fun onLoginSuccess(loginResponse: LoginResponse) {
+
+        FoodMarket.getApp().setToken(loginResponse.access_token)
+
+        val gson = Gson()
+        val json = gson.toJson(loginResponse.user)
+        FoodMarket.getApp().setUser(json)
+
         val home = Intent(activity, MainActivity::class.java)
         startActivity(home)
         activity?.finish()
@@ -52,6 +79,11 @@ class SigninFragment : Fragment(), SigninContract.View {
 
     override fun onLoginFailed(message: String) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun initDummy() {
+        etEmail.setText("imamrob@gmail.com")
+        etPassword.setText("12345678")
     }
 
     private fun initView() {

@@ -24,12 +24,11 @@ class SignupFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        btnContinue.setOnClickListener{
+        btnContinue.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_signup_address, null)
 
             (activity as AuthActivity).toolbarSignupAdress()
         }
     }
-
 }
