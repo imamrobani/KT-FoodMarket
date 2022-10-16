@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.imrob.foodmarket.R
+import com.imrob.foodmarket.model.request.RegisterRequest
 import com.imrob.foodmarket.ui.auth.AuthActivity
 import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -36,12 +37,6 @@ class SignupFragment : Fragment() {
         initDummy()
         initListener()
 
-        btnContinue.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_signup_address, null)
-
-            (activity as AuthActivity).toolbarSignupAdress()
-        }
     }
 
     private fun initListener() {
@@ -49,6 +44,41 @@ class SignupFragment : Fragment() {
             ImagePicker.with(this)
                 .cameraOnly()
                 .start()
+        }
+
+        btnContinue.setOnClickListener {
+
+            var fullname = etFullname.text.toString()
+            var email = etEmail.text.toString()
+            var pass = etPassword.text.toString()
+
+            if (fullname.isNullOrEmpty()) {
+                etFullname.error = "Silahkan masukkan fullname"
+                etFullname.requestFocus()
+            } else if (email.isNullOrEmpty()) {
+                etEmail.error = "Silahkan masukkan email"
+                etEmail.requestFocus()
+            } else if (pass.isNullOrEmpty()) {
+                etPassword.error = "Silahkan masukkan password"
+                etPassword.requestFocus()
+            } else {
+                var data = RegisterRequest(
+                    fullname,
+                    email,
+                    pass,
+                    pass,
+                    "", "", "", "",
+                    filePath
+                )
+
+                var bundle = Bundle()
+                bundle.putParcelable("data", data)
+
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_signup_address, bundle)
+
+                (activity as AuthActivity).toolbarSignupAdress()
+            }
         }
     }
 

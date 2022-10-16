@@ -1,6 +1,8 @@
 package com.imrob.foodmarket.network
 
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.imrob.foodmarket.BuildConfig
+import com.imrob.foodmarket.FoodMarket
 import com.imrob.foodmarket.utils.Helpers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -36,11 +38,11 @@ class HttpClient {
     }
 
     private fun buildRetrofitClient() {
-        val token = ""
+        val token = FoodMarket.getApp().getToken()
         buildRetrofitClient(token)
     }
 
-    fun buildRetrofitClient(token: String) {
+    fun buildRetrofitClient(token: String?) {
         val builder = OkHttpClient.Builder()
         builder.connectTimeout(2, TimeUnit.MINUTES)
         builder.readTimeout(2, TimeUnit.MINUTES)
@@ -49,6 +51,7 @@ class HttpClient {
             var interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             builder.addInterceptor(interceptor)
+            builder.addInterceptor(ChuckerInterceptor(FoodMarket.getApp()))
         }
 
         if (token != null) {
